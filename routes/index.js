@@ -1,4 +1,4 @@
-var check = require('../jsvat').check
+var checkVATNumber = require('../jsvat').checkVATNumber
   , request = require('request')
   , xmlparse = require('xml2js').parseString
   , _ = require('underscore')
@@ -33,7 +33,7 @@ exports.index = function(req, res, next) {
 
   var vat = req.params.vat.toUpperCase().replace(/[^0-9A-Z]/g, '')
     , ctx = {
-        valid: !!check(vat)
+        valid: !!checkVATNumber(vat)
       , countryCode: vat.slice(0, 2)
       , vatNumber: vat.slice(2)
     }
