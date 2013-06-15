@@ -1,0 +1,9 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns1="urn:ec.europa.eu:taxud:vies:services:checkVat:types" xmlns:impl="urn:ec.europa.eu:taxud:vies:services:checkVat">
+  <soap:Header></soap:Header>
+  <soap:Body>
+    <tns1:checkVat xmlns:tns1="urn:ec.europa.eu:taxud:vies:services:checkVat:types" xmlns="urn:ec.europa.eu:taxud:vies:services:checkVat:types">
+      <tns1:countryCode>{{ countryCode }}</tns1:countryCode>
+      <tns1:vatNumber>{{ vatNumber }}</tns1:vatNumber>
+    </tns1:checkVat>
+  </soap:Body>
+</soap:Envelope>

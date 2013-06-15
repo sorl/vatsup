@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+supervisor -n error -i node_modules -e "js" app.js

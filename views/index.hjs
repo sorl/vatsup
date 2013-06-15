@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ vatNumber }}</title>
+	<meta charset="utf-8">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="padding:20px">
+  <dl class="dl-horizontal">
+    <dt>Valid</dt><dd>{{ valid }}</dd>
+    {{#simple}}<dt>Simple</dt><dd>{{ simple }}</dd>{{/simple}}
+    <dt>Country Code</td><dd>{{ countryCode }}</dd>
+    <dt>VAT Number</dt><dd>{{ vatNumber }}</dd>
+    {{#requestDate}}<dt>Request Date</dt><dd>{{ requestDate }}</dd>{{/requestDate}}
+    {{#name}}<dt>Name</dt><dd>{{ name }}</dd>{{/name}}
+    {{#address}}<dt>Address</dt><dd>{{{ address }}}</dd>{{/address}}
+    {{#error}}<dt>Error</dt><dd>{{ error }}</dd>{{/error}}
+  </dl>
+  <div style="margin-top:300px;width:500px">
+  <p class="muted">
+    * If you want a JSON response, send a request Accept header starting with 'application/json' or
+    a query parameter json=1
+  </p>
+  <p class="muted">
+    * If you don't need to check against VIES service as done by default and only use regexps pass
+    the query parameter simple=1
+  </p>
+  </div>
+</body>
+</html>
