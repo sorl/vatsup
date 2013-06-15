@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VATsup</title>
+	<meta charset="utf-8">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="padding:20px;max-width:500px">
+{{{ content }}}
+</body>
+</html>

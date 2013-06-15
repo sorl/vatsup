@@ -3,6 +3,16 @@ var check = require('../jsvat').check
   , xmlparse = require('xml2js').parseString
   , _ = require('underscore')
   , Hogan = require('hjs')
+  , fs = require('fs')
+  , marked = require('marked')
+
+
+exports.info = function(req, res, next) {
+  fs.readFile(__dirname + '/../README.md', 'utf8', function(err, text) {
+    content = marked.parser( marked.lexer(text) )
+    return res.render('info', {content: content})
+  })
+}
 
 
 exports.index = function(req, res, next) {

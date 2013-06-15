@@ -12,6 +12,7 @@ app.use(express.logger('dev'))
 app.use(express.bodyParser())
 app.use(app.router)
 
+app.get('/', routes.info)
 app.get('/:vat', routes.index)
 
 
