@@ -10,7 +10,8 @@
     "request": "2.21.0",
     "xml2js": "0.2.7",
     "underscore": "1.4.4",
-    "hjs": "0.0.4"
+    "hjs": "0.0.4",
+    "marked": "0.2.9"
   },
   "subdomain": "aino-vatsup",
   "engines": {
