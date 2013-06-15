@@ -9,7 +9,7 @@ var check = require('../jsvat').check
 
 exports.info = function(req, res, next) {
   fs.readFile(__dirname + '/../README.md', 'utf8', function(err, text) {
-    content = marked.parser( marked.lexer(text) )
+    var content = marked.parser( marked.lexer(text) )
     return res.render('info', {content: content})
   })
 }
