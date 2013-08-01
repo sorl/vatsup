@@ -18,7 +18,7 @@ exports.info = function(req, res, next) {
 exports.index = function(req, res, next) {
   // function to serve ctx to client
   var serve = function(ctx) {
-    if ( req.headers.accept.match(/^application\/json/) || req.query.json ) {
+    if ( (req.headers.accept && req.headers.accept.match(/^application\/json/)) || req.query.json ) {
       return res.json(ctx)
     }
     if ( ctx.address ) {
