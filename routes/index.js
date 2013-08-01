@@ -44,10 +44,17 @@ exports.index = function(req, res, next) {
     return serve(ctx)
   }
   ctx.valid = false // this will be set properly by calling vies
+  var timeout = req.query.timeout && parseInt(req.query.timeout, 10)
+  if (timeout) {
+    timeout = timeout * 1000
+  } else {
+    timeout = 1500
+  }
+  console.log( timeout )
   var opts = {
       uri: 'http://ec.europa.eu/taxation_customs/vies/services/checkVatService'
     , method: 'POST'
-    , timeout: 15000 //(ms)
+    , timeout: timeout
     , body: Hogan.fcompile(__dirname + '/../views/vies.hjs').render(ctx)
   }
   request(opts, function(err, response, body) {
