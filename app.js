@@ -5,6 +5,7 @@ var express = require('express')
 var app = express()
   , port = process.env.PORT || 8000
 
+app.set('views', __dirname + '/views')
 app.set('view engine', 'hjs')
 
 app.use(express.favicon());
