@@ -76,15 +76,6 @@ function checkVATNumber (toCheck) {
   // Array holds the regular expressions for the valid VAT number
   var vatexp = new Array ();
   
-  // To change the default country (e.g. from the UK to Germany - DE):
-  //    1.  Change the country code in the defCCode variable below to "DE".
-  //    2.  Remove the question mark from the regular expressions associated 
-  //        with the UK VAT number: i.e. "(GB)?" -> "(GB)"
-  //    3.  Add a question mark into the regular expression associated with
-  //        Germany's number following the country code: i.e. "(DE)" -> "(DE)?"
-  
-  var defCCode = "GB";
-  
   // Note - VAT codes without the "**" in the comment do not have check digit
   // checking.
 
@@ -106,12 +97,12 @@ function checkVATNumber (toCheck) {
   vatexp.push (/^(FR)[(A-H)|(J-N)|(P-Z)]\d{10}$/);          // France (2)
   vatexp.push (/^(FR)\d[(A-H)|(J-N)|(P-Z)]\d{9}$/);         // France (3)
   vatexp.push (/^(FR)[(A-H)|(J-N)|(P-Z)]{2}\d{9}$/);        // France (4)
-  vatexp.push (/^(GB)?(\d{9})$/);                           //** UK (standard)
-  vatexp.push (/^(GB)?(\d{10})$/);                          //** UK (Commercial)
-  vatexp.push (/^(GB)?(\d{12})$/);                          //UK (IOM standard)
-  vatexp.push (/^(GB)?(\d{13})$/);                          //UK (IOM commercial)
-  vatexp.push (/^(GB)?(GD\d{3})$/);                         //** UK (Government)
-  vatexp.push (/^(GB)?(HA\d{3})$/);                         //** UK (Health authority)
+  vatexp.push (/^(GB)(\d{9})$/);                            //** UK (standard)
+  vatexp.push (/^(GB)(\d{10})$/);                           //** UK (Commercial)
+  vatexp.push (/^(GB)(\d{12})$/);                           //UK (IOM standard)
+  vatexp.push (/^(GB)(\d{13})$/);                           //UK (IOM commercial)
+  vatexp.push (/^(GB)(GD\d{3})$/);                          //** UK (Government)
+  vatexp.push (/^(GB)(HA\d{3})$/);                          //** UK (Health authority)
   vatexp.push (/^(GR)(\d{8,9})$/);                          //** Greece 
   vatexp.push (/^(HU)(\d{8})$/);                            //** Hungary 
   vatexp.push (/^(IE)(\d{7}[A-W])$/);                       //** Ireland (1)
@@ -149,7 +140,6 @@ function checkVATNumber (toCheck) {
       
       var cCode = RegExp.$1;                             // Isolate country code
       var cNumber = RegExp.$2;                           // Isolate the number
-      if (cCode.length == 0) cCode = defCCode;           // Set up default country code
       
       // Now look at the check digits for those countries we know about.
       switch (cCode) {     

@@ -44,13 +44,8 @@ exports.index = function(req, res, next) {
     return serve(ctx)
   }
   ctx.valid = false // this will be set properly by calling vies
-  var timeout = req.query.timeout && parseInt(req.query.timeout, 10)
-  if (timeout) {
-    timeout = timeout * 1000
-  } else {
-    timeout = 1500
-  }
-  console.log( timeout )
+  var timeout = (req.query.timeout && parseInt(req.query.timeout, 10)) || 15
+  timeout = timeout * 1000
   var opts = {
       uri: 'http://ec.europa.eu/taxation_customs/vies/services/checkVatService'
     , method: 'POST'
