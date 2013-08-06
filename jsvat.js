@@ -1,75 +1,17 @@
-/*==============================================================================
-
-Application:   Utility Function
-Author:        John Gardner
-
-Version:       V1.0
-Date:          30th July 2005
-Description:   Used to check the validity of an EU VAT number
-
-Version:       V1.1
-Date:          3rd August 2005
-Description:   Lithunian legal entities & Maltese check digit checks added.
-
-Version:       V1.2
-Date:          20th October 2005
-Description:   Italian checks refined (thanks Matteo Mike Peluso).
-
-Version:       V1.3
-Date:          16th November 2005
-Description:   Error in GB numbers ending in 00 fixed (thanks Guy Dawson).
-
-Version:       V1.4
-Date:          28th September 2006
-Description:   EU-type numbers added.
-
-Version:       V1.5
-Date:          1st January 2007
-Description:   Romanian and Bulgarian numbers added.
-
-Version:       V1.6
-Date:          7th January 2007
-Description:   Error with Slovenian numbers (thanks to Ales Hotko).
-
-Version:       V1.7
-Date:          10th February 2007
-Description:   Romanian check digits added. Thanks to Dragu Costel for test suite.
-
-Version:       V1.8
-Date:          3rd August 2007
-Description:   IE code modified to allow + and * in old format numbers. Thanks 
-               to Antonin Moy of Spehere Solutions for pointing out the error.
-
-Version:       V1.9
-Date:          6th August 2007
-Description:   BE code modified to make a specific check that the leading 
-               character of 10 digit numbers is 0 (belts and braces).
-
-Version:       V1.10
-Date:          10th August 2007
-Description:   Cypriot check digit support added.
-               Check digit validation support for non-standard UK numbers
-
-Version:       V1.11
-Date:          25th September 2007
-Description:   Spain check digit support for personal numbers.
-               Author: David Perez Carmona
-  
-Parameters:    toCheck - VAT number be checked. 
-
-This function checks the value of the parameter for a valid European VAT number. 
-
-If the number is found to be invalid format, the function returns a value of 
-false. Otherwise it returns the VAT number re-formatted.
-  
-Example call:
-  
-  if (checkVATNumber (myVATNumber)) 
-      alert ("VAT number has a valid format")
-  else 
-      alert ("VAT number has invalid format");
-                    
-------------------------------------------------------------------------------*/
+// Parameters:    toCheck - VAT number be checked. 
+// 
+// This function checks the value of the parameter for a valid European VAT number. 
+// 
+// If the number is found to be invalid format, the function returns a value of 
+// false. Otherwise it returns the VAT number re-formatted.
+//   
+// Example call:
+//   
+//   if (checkVATNumber (myVATNumber)) 
+//       alert ("VAT number has a valid format")
+//   else 
+//       alert ("VAT number has invalid format");
+//                     
 
 function checkVATNumber (toCheck) {
  
@@ -928,27 +870,8 @@ function UKVATCheckDigit (vatnumber) {
   
   // Standard and commercial numbers
   if (vatnumber.length == 9 || vatnumber.length == 10) {
-    var total = 0;
     if (vatnumber.length == 10 && vatnumber.slice (9,10) != '3') return false;
-    
-    // Extract the next digit and multiply by the counter.
-    for (var i = 0; i < 7; i++) total = total + Number(vatnumber.charAt(i)) * multipliers[i];
-  
-    // Establish check digits by subtracting 97 from total until negative.
-    while (total > 0) {total = total - 97;}    
-  
-    // Get the absolute value and compare it with the last two characters of the
-    // VAT number. If the same, then it is a valid check digit.
-    total = Math.abs(total);
-    if (total == vatnumber.slice (7,9)) 
-      return true 
-    else  
-      return false;
   }
-  
-  // We don't check 12 and 13 digit UK numbers - not only can we not find any, 
-  // but the information found on the format is contradictory.
-  
   return true;
 }
 
